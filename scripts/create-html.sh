@@ -189,6 +189,6 @@ cat >> $index <<FOOT
 </html>
 FOOT
 
-echo "You can see results with 'rnss results'"
+echo "You can see results with 'npx rnsst results'"
 
 cd $initLocation
