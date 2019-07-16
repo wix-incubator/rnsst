@@ -61,7 +61,7 @@ This library works by setting up a websocket server and channel with your runnin
 
 ## Tips
 
-You can use ! as your first letter in story name to skip the story.
+You can use `!` as your first letter in story name to skip the story.
 
 ## Author
 
