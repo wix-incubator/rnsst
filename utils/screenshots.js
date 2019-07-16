@@ -1,5 +1,6 @@
 const path = require('path');
 const {spawn} = require('child_process');
+const fs = require('fs');
 const {mkdir, deleteFolderRecursive, getImageDiff} = require('./helpers');
 
 module.exports = (screenshotsPath) => {
@@ -48,6 +49,11 @@ module.exports = (screenshotsPath) => {
       deleteFolderRecursive(reference);
       mkdir(reference);
       copyFolderRecursiveSync(current, reference);
+    },
+    hasReferenceScreenshot: (name) => {
+      const reference = path.resolve(screenshotsPath, `./reference/${name}.png`);
+
+      return fs.existsSync(reference);
     }
   };
 };

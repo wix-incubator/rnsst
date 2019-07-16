@@ -59,13 +59,17 @@ program
   .on('--help', () => {
     console.log('');
     console.log('To set-up first create "./rnsst-config.js" file. File contents:');
-    console.log(`const path = require('path');
+    console.log(`
+
+const path = require('path');
 module.exports = {
   screenshotPath: path.resolve(__dirname, './screenshots'), //or any path that you want
-};`);
+};
 
-  console.log('Then create "storybook.spec.js" file in your detox tests. File contents:');
-  console.log("require('rnsst')(...optional function to call before running screenshot tests)");
+`);
+
+  console.log('Then create "storybook.spec.js" file in your detox tests. File contents: \n');
+  console.log("require('rnsst')(async () => {}...optional function to call before running screenshot tests)");
 });
 
 
