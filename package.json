@@ -1,11 +1,12 @@
 {
   "name": "rnsst",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React Native Storybook Screeshot Tests with Detox",
   "main": "test.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin" : "./rnsst",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wix/rnsst.git"
@@ -18,6 +19,15 @@
     "Screenshot",
     "Testing"
   ],
+  "dependencies": {
+    "commander": "^2.20.0",
+    "gm": "^1.23.1",
+    "ws": "^7.1.0"
+  },
+  "peerDependencies": {
+    "detox": "*",
+    "@storybook/react-native": "^5.2.0"
+  },
   "author": "Gytis Vinclovas",
   "license": "MIT",
   "bugs": {
