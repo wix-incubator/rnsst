@@ -30,7 +30,7 @@ You can read more about [Detox](https://github.com/wix/Detox) and about [Storybo
 npm install rnsst
 ```
 
-To set-up  first create ./rnsst-config.js file.
+To set-up  first create `./rnsst-config.js` file.
 
 ```js
 const path = require('path');
@@ -50,7 +50,9 @@ Finally for the first time run `npx rnsst create-reference`.
 ## Usage
 
 Whenever you do some changes you can run `npx rnsst test` to compare reference screenshots to current screeshots.
+
 You can the run `npx rnsst results` to open html file with all screenshots (differences, current, reference).
+
 If you want to confirm your changes run `npx rnsst approve`.
 
 ## Author
