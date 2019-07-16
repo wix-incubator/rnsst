@@ -21,7 +21,7 @@
 
 ## Prerequisites
 
-This project depends on having detox and storybook running in your project.
+This project depends on having detox with mocha and storybook running in your project.
 You can read more about [Detox](https://github.com/wix/Detox) and about [Storybook](https://storybook.js.org/)
 
 ## Install
@@ -54,6 +54,14 @@ Whenever you do some changes you can run `npx rnsst test` to compare reference s
 You can the run `npx rnsst results` to open html file with all screenshots (differences, current, reference).
 
 If you want to confirm your changes run `npx rnsst approve`.
+
+## How does it work
+
+This library works by setting up a websocket server and channel with your running storybook project. This way inside the tests we can retrieve story list and then run the tests on it.
+
+## Tips
+
+You can use `!` as your first letter in story name to skip the story.
 
 ## Author
 
