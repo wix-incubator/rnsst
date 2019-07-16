@@ -1,0 +1,27 @@
+{
+  "name": "rnsst",
+  "version": "0.0.1",
+  "description": "React Native Storybook Screeshot Tests with Detox",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wix/rnsst.git"
+  },
+  "keywords": [
+    "React",
+    "Native",
+    "Storybook",
+    "Detox",
+    "Screenshot",
+    "Testing"
+  ],
+  "author": "Gytis Vinclovas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wix/rnsst/issues"
+  },
+  "homepage": "https://github.com/wix/rnsst#readme"
+}
