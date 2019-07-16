@@ -35,7 +35,8 @@ To set-up  first create `./rnsst-config.js` file.
 ```js
 const path = require('path');
 module.exports = {
-  screenshotPath: path.resolve(__dirname, `./screenshots`), //or any path that you want
+  screenshotPath: path.resolve(__dirname, './screenshots'), //path where you want your screenshots
+  testPath: path.resolve(__dirname, './e2e/storybook.spec.js'), //path where your spec file exists 
 };
 ```
 
@@ -61,7 +62,8 @@ This library works by setting up a websocket server and channel with your runnin
 
 ## Tips
 
-You can use `!` as your first letter in story name to skip the story.
+- You can use `!` as your first letter in story name to skip the story.
+- You can pass custom detox arguments as `--detox-args`
 
 ## Author
 
