@@ -10,25 +10,27 @@ function execute(command) {
 
 program
   .version('0.0.1')
-  .option('-c, --config [path]', 'custom path to config. Defaults to ./rnsst-config.js', path.resolve(process.cwd(), './rnsst-config.js'));
+  .option('-c, --config <path>', 'custom path to config. Defaults to ./rnsst-config.js', path.resolve(process.cwd(), './rnsst-config.js'))
+  .option('-d, --detoxArgs <args>', 'arguments to pass to detox', '');
+
 
 program
   .command('create-reference')
   .description('Create reference screenshots for your stories')
   .action(() => {
-    const {screenshotPath} = require(program.config);
-    execute(`STORYBOOK_UPDATE_REFERENCE=true STORYBOOK_SCREENSHOT_PATH=${screenshotPath} detox test`);
+    const {screenshotPath, testPath} = require(program.config);
+    execute(`STORYBOOK_UPDATE_REFERENCE=true STORYBOOK_SCREENSHOT_PATH=${screenshotPath} detox test ${program.detoxArgs} ${testPath}`);
   });
 
 program
   .command('test')
   .description('Compare your stories to reference screenshots')
   .action(() => {
-    const {screenshotPath} = require(program.config);
+    const {screenshotPath, testPath} = require(program.config);
 
     let error;
     try {
-      execute(`STORYBOOK_SCREENSHOT_PATH=${screenshotPath} detox test`);
+      execute(`STORYBOOK_SCREENSHOT_PATH=${screenshotPath} detox test ${program.detoxArgs} ${testPath}`);
     } catch (e) {
       error = e;
     }
@@ -60,17 +62,16 @@ program
     console.log('');
     console.log('To set-up first create "./rnsst-config.js" file. File contents:');
     console.log(`
-
 const path = require('path');
 module.exports = {
-  screenshotPath: path.resolve(__dirname, './screenshots'), //or any path that you want
+  screenshotPath: path.resolve(__dirname, './screenshots'), //path where you want your screenshots
+  testPath: path.resolve(__dirname, './e2e/storybook.spec.js'), //path where your spec file exists 
 };
-
 `);
 
-  console.log('Then create "storybook.spec.js" file in your detox tests. File contents: \n');
-  console.log("require('rnsst')(async () => {}...optional function to call before running screenshot tests)");
-});
+    console.log('Then create "storybook.spec.js" file in your detox tests. File contents: \n');
+    console.log("require('rnsst')(async () => {}...optional function to call before running screenshot tests)");
+  });
 
 
 program.parse(process.argv);
