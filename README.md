@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to React Native Storybook Screenshot Testing 👋</h1>
+<h1 align="center">React Native Storybook Screenshot Testing</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/wix/rnsst#readme">
@@ -27,7 +27,7 @@ You can read more about [Detox](https://github.com/wix/Detox) and about [Storybo
 ## Install
 
 ```sh
-npm install
+npm install rnsst
 ```
 
 
