@@ -10,7 +10,7 @@ function execute(command) {
 
 program
   .version('0.0.1')
-  .option('-c, --config [path]', 'custom path to config. Defaults to ./rnss-config.js', path.resolve(process.cwd(), './rnss-config.js'));
+  .option('-c, --config [path]', 'custom path to config. Defaults to ./rnsst-config.js', path.resolve(process.cwd(), './rnsst-config.js'));
 
 program
   .command('create-reference')
@@ -54,5 +54,17 @@ program
     const report = path.resolve(screenshotPath, './index.html');
     execute(`open ${report}`);
   });
+
+program.on('--help', () =>{
+  console.log('');
+  console.log('To set-up  first create ./rnsst-config.js file. File contents:');
+  console.log(`const path = require('path');
+module.exports = {
+  screenshotPath: path.resolve(__dirname, `./screenshots`), //or any path that you want
+};`);
+  console.log('Then create storybook.spec.js file in your detox tests. File contents:');
+  console.log('require('rnsst')(...optional function to call before running screenshot tests)');
+});
+
 
 program.parse(process.argv);
