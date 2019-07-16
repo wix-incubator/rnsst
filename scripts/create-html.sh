@@ -67,6 +67,10 @@ cat >> $index <<HEAD
     .tabcontent.active {
       display: block;
     }
+
+    .hide {
+        display: none;
+    }
   </style>
 </head>
 <body>
@@ -74,6 +78,7 @@ cat >> $index <<HEAD
   <button class="tablinks active" onclick="openTab(event, 'difference')">Difference</button>
   <button class="tablinks" onclick="openTab(event, 'current')">Current</button>
   <button class="tablinks" onclick="openTab(event, 'reference')">Reference</button>
+  <div style="padding-top: 12px;"><label>Filter <input id="filter" /></label></div>
 </div>
 HEAD
 
@@ -91,8 +96,10 @@ fi
 
 caption=$(basename $i)
 cat >> $index <<HTML
-    <h2>$caption</h2>
-    <img src="$i"/>
+    <div class="image $i">
+        <h2>$caption</h2>
+        <img src="$i"/>
+    </div>
 HTML
 done
 
@@ -109,8 +116,10 @@ for i in ./current/*.png
 do
 caption=$(basename $i)
 cat >> $index <<HTML
-    <h2>$caption</h2>
-    <img src="$i"/>
+   <div class="image $i">
+        <h2>$caption</h2>
+        <img src="$i"/>
+   </div>
 HTML
 done
 
@@ -128,8 +137,10 @@ for i in ./reference/*.png
 do
 caption=$(basename $i)
 cat >> $index <<HTML
-    <h2>$caption</h2>
-    <img src="$i"/>
+     <div class="image $i">
+        <h2>$caption</h2>
+        <img src="$i"/>
+    </div>
 HTML
 done
 
@@ -161,6 +172,18 @@ cat >> $index <<FOOT
       document.getElementById(cityName).className += " active";
       evt.currentTarget.className += " active";
     }
+
+    document.getElementById('filter').addEventListener('input', (e) => filterSelection(e.target.value));
+
+    function filterSelection(pattern) {
+      [...document.getElementsByClassName("image")].forEach(e => {
+        e.classList.remove('hide');
+        if (e.className.indexOf(pattern) === -1) {
+        e.classList.add('hide');
+        }
+      });
+    }
+
 </script>
 </body>
 </html>

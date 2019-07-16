@@ -18,9 +18,9 @@ module.exports = (beforeHandler) => {
 
       runTests(channel, stories, createReferenceFiles, screenshotUtils);
     });
-  });
 
-  it('Setup', () => {});
+    it('Setup', () => {});
+  });
 };
 
 

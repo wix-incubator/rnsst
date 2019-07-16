@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const gm = require('gm');
 
 //https://geedew.com/remove-a-directory-that-is-not-empty-in-nodejs/
 function deleteFolderRecursive(path) {
@@ -62,8 +63,6 @@ function copyFolderRecursiveSync(source, target) {
 }
 
 // https://github.com/oblador/loki/blob/master/src/diffing/looks-same.js
-const gm = require('gm');
-
 function getImageDiff(path1, path2, diffPath, tolerance) {
   return new Promise((resolve, reject) => {
     gm.compare(

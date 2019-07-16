@@ -2,7 +2,7 @@ global.WebSocket = require('ws');
 
 const Events = require('@storybook/core-events').default;
 const createChannel = require('@storybook/channel-websocket').default;
-const {Server} = require('./utils/websockets');
+const {Server} = require('./websockets');
 
 module.exports = function setupChannel() {
   //Start websocket server
