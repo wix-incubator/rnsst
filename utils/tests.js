@@ -9,6 +9,10 @@ function loadTests(channel, beforeHandler) {
   });
 }
 
+function wait(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
 function runTests(channel, stories, createReferenceFiles, {takeStoryScreenshot, compareScreenshots, updateReference} ) {
   describe('Comparing screenshots', () => {
     Object.values(stories).forEach((story) => {
@@ -20,6 +24,7 @@ function runTests(channel, stories, createReferenceFiles, {takeStoryScreenshot, 
         const {id} = story;
 
         channel.setStory(id);
+        await wait(200);
         await takeStoryScreenshot(id);
 
         if (!createReferenceFiles) {
