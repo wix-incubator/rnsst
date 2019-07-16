@@ -1,6 +1,6 @@
 {
   "name": "rnsst",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "React Native Storybook Screeshot Tests with Detox",
   "main": "test.js",
   "scripts": {
