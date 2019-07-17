@@ -10,9 +10,6 @@
   <a href="https://github.com/wix/rnsst/blob/master/LICENSE">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
   </a>
-  <a href="https://twitter.com/GytisVinclovas">
-    <img alt="Twitter: GytisVinclovas" src="https://img.shields.io/twitter/follow/GytisVinclovas.svg?style=social" target="_blank" />
-  </a>
 </p>
 
 > This is a helper project which allows you to run screeshot tests for your React Native Storybook project
@@ -37,13 +34,14 @@ const path = require('path');
 module.exports = {
   screenshotPath: path.resolve(__dirname, './screenshots'), //path where you want your screenshots
   testPath: path.resolve(__dirname, './e2e/storybook.spec.js'), //path where your spec file exists 
+  port: 6006 // Optional port to run storybook server on, default is 7007
 };
 ```
 
 Then create storybook.spec.js file in your detox tests.
 
 ```js
-require('rnsst')(...optional function to call before running screenshot tests);
+require('rnsst')(async () => {/* ...optional function to call before running screenshot tests */});
 ```
 
 Finally for the first time run `npx rnsst create-reference`.
