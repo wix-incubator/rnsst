@@ -37,13 +37,14 @@ const path = require('path');
 module.exports = {
   screenshotPath: path.resolve(__dirname, './screenshots'), //path where you want your screenshots
   testPath: path.resolve(__dirname, './e2e/storybook.spec.js'), //path where your spec file exists 
+  port: 6006 // Optional port to run storybook server on, default is 7007
 };
 ```
 
 Then create storybook.spec.js file in your detox tests.
 
 ```js
-require('rnsst')(...optional function to call before running screenshot tests);
+require('rnsst')(async () => {/* ...optional function to call before running screenshot tests */});
 ```
 
 Finally for the first time run `npx rnsst create-reference`.
