@@ -4,12 +4,12 @@ const Events = require('@storybook/core-events').default;
 const createChannel = require('@storybook/channel-websocket').default;
 const {Server} = require('./websockets');
 
-module.exports = function setupChannel() {
+module.exports = function setupChannel(port) {
   //Start websocket server
-  const server = new Server();
+  const server = new Server(port);
 
   //Create storybook channel
-  const channel = createChannel({url: 'ws://localhost:7007'});
+  const channel = createChannel({url: `ws://localhost:${port}`});
 
   return {
     stop() {

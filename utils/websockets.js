@@ -1,8 +1,8 @@
 const ws = require('ws');
 
 module.exports.Server = class Server {
-  constructor() {
-    this.wsServer = new ws.Server({port: 7007});
+  constructor(port) {
+    this.wsServer = new ws.Server({port});
     this.wsServer.on('connection', (s, req) => this.handleWS(s, req));
   }
 
