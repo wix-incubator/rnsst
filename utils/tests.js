@@ -34,8 +34,8 @@ function runTests(channel, stories, createReferenceFiles, {takeStoryScreenshot, 
             it(story.name, async function () {
               const {id} = story;
 
-              channel.setStory(id);
-              await wait(200);
+              await channel.setStory(id);
+
               await takeStoryScreenshot(id);
 
               if (!createReferenceFiles) {
