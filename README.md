@@ -10,9 +10,6 @@
   <a href="https://github.com/wix/rnsst/blob/master/LICENSE">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
   </a>
-  <a href="https://twitter.com/GytisVinclovas">
-    <img alt="Twitter: GytisVinclovas" src="https://img.shields.io/twitter/follow/GytisVinclovas.svg?style=social" target="_blank" />
-  </a>
 </p>
 
 > This is a helper project which allows you to run screeshot tests for your React Native Storybook project
