@@ -7,10 +7,6 @@ function loadTests(channel, beforeHandler) {
   ).then(([stories]) => stories);
 }
 
-function wait(ms) {
-  return new Promise((r) => setTimeout(r, ms));
-}
-
 function groupBy(key, arr) {
   return arr.reduce((acc, cur) => {
     acc[cur[key]] = acc[cur[key]] || [];

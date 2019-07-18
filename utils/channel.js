@@ -20,7 +20,7 @@ module.exports = function setupChannel(port) {
   //should use STORY_RENDERED in future and remove the wait timeout
   channel.on(Events.SELECT_STORY, async () => {
     if (notifyStorySet) {
-      await wait(500);
+      await wait(2000);
       notifyStorySet();
       notifyStorySet = null;
     }
