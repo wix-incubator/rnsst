@@ -4,10 +4,6 @@ const Events = require('@storybook/core-events').default;
 const createChannel = require('@storybook/channel-websocket').default;
 const {Server} = require('./websockets');
 
-function wait(ms) {
-  return new Promise((r) => setTimeout(r, ms));
-}
-
 module.exports = function setupChannel(port) {
   //Start websocket server
   const server = new Server(port);
@@ -20,7 +16,6 @@ module.exports = function setupChannel(port) {
   //should use STORY_RENDERED in future and remove the wait timeout
   channel.on(Events.STORY_RENDERED, async () => {
     if (notifyStorySet) {
-      await wait(2000);
       notifyStorySet();
       notifyStorySet = null;
     }
