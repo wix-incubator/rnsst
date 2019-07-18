@@ -31,11 +31,13 @@ module.exports = function setupChannel(port) {
       server.wsServer.close();
     },
 
-    getStoryList(callback) {
+    getStoryList() {
       //Wait till storybook sends us story list
       channel.emit(Events.GET_STORIES);
-      channel.on(Events.SET_STORIES, ({stories}) => {
-        callback(stories);
+      return new Promise((resolve) => {
+        channel.on(Events.SET_STORIES, ({stories}) => {
+          resolve(stories);
+        });
       });
     },
 

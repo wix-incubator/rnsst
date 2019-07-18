@@ -1,11 +1,10 @@
 function loadTests(channel, beforeHandler) {
-  return new Promise(async (resolve) => {
-    channel.getStoryList(resolve);
-
-    if (beforeHandler) {
-      await beforeHandler();
-    }
-  });
+  return Promise.all(
+    [
+      channel.getStoryList(),
+      beforeHandler && beforeHandler()
+    ].filter(x => x)
+  ).then(([stories]) => stories);
 }
 
 function wait(ms) {
