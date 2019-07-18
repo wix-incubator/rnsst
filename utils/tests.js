@@ -16,6 +16,11 @@ function groupBy(key, arr) {
   }, {});
 };
 
+
+function wait(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
 function runTests(channel, stories, createReferenceFiles, {takeStoryScreenshot, hasReferenceScreenshot, compareScreenshots, updateReference}) {
   describe('Comparing screenshots', () => {
     Object.entries(groupBy('kind', Object.values(stories)))
@@ -30,7 +35,7 @@ function runTests(channel, stories, createReferenceFiles, {takeStoryScreenshot, 
               const {id} = story;
 
               await channel.setStory(id);
-
+              await wait(2000);
               await takeStoryScreenshot(id);
 
               if (!createReferenceFiles) {
