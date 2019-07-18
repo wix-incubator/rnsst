@@ -18,9 +18,9 @@ module.exports = function setupChannel(port) {
   const channel = createChannel({url: `ws://localhost:${port}`});
 
   //should use STORY_RENDERED in future and remove the wait timeout
-  channel.on(Events.SELECT_STORY, async () => {
+  channel.on(Events.STORY_RENDERED, async () => {
     if (notifyStorySet) {
-      await wait(5000);
+      await wait(2000);
       notifyStorySet();
       notifyStorySet = null;
     }
