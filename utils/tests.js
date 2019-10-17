@@ -59,8 +59,8 @@ function runTests(channel, stories, createReferenceFiles, {takeStoryScreenshot, 
               await takeStoryScreenshot(id);
 
               if (config.applitools) {
-                await eyes.open(config.applitools.appName || 'APP_NAME', story.name);
-                await eyes.checkImage(getScreenshot(id), story.name);
+                await eyes.open(config.applitools.appName || 'APP_NAME', id);
+                await eyes.checkImage(getScreenshot(id), id);
 
                 await eyes.close();
 
