@@ -2,18 +2,10 @@ const screenshotUtilsFactory = require('./utils/screenshots');
 const setupChannel = require('./utils/channel');
 const {loadTests, runTests} = require('./utils/tests');
 
-function getArguments() {
-  return {
-    createReferenceFiles: !!process.env.STORYBOOK_UPDATE_REFERENCE,
-    screenshotPath: process.env.STORYBOOK_SCREENSHOT_PATH,
-    port: process.env.STORYBOOK_PORT
-  };
-}
-
 const config = require(process.env.RNSST_CONFIG_PATH);
 
 module.exports = (beforeHandler) => {
-  const {createReferenceFiles, screenshotPath, port} = getArguments();
+  const {screenshotPath, port} = config;
 
   const screenshotUtils = screenshotUtilsFactory(screenshotPath);
 
@@ -24,7 +16,7 @@ module.exports = (beforeHandler) => {
       const channel = setupChannel(port);
       const stories = await loadTests(channel, beforeHandler);
 
-      runTests(channel, stories, createReferenceFiles, screenshotUtils, config);
+      runTests(channel, stories, screenshotUtils, config);
     });
 
     it('Setup', () => {});

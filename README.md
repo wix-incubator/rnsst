@@ -12,7 +12,7 @@
   </a>
 </p>
 
-> This is a helper project which allows you to run screeshot tests for your React Native Storybook project (with optional Applitools support)
+> This is a helper project which allows you to run screeshot tests for your React Native Storybook project with Applitools.
 
 ### 🏠 [Homepage](https://github.com/wix/rnsst#readme)
 
@@ -53,15 +53,10 @@ Then create storybook.spec.js file in your detox tests.
 require('rnsst')(async () => {/* ...optional function to call before running screenshot tests */});
 ```
 
-Finally for the first time run `npx rnsst create-reference`.
-
 ## Usage
 
 Whenever you do some changes you can run `npx rnsst test` to compare reference screenshots to current screeshots.
-
-You can the run `npx rnsst results` to open html file with all screenshots (differences, current, reference).
-
-If you want to confirm your changes run `npx rnsst approve`.
+After that you can check applitools to see your changes.
 
 ## How does it work
 

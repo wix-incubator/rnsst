@@ -4,14 +4,9 @@ const program = require('commander');
 const path = require('path');
 const {execSync} = require('child_process');
 
-function execute(command) {
-  const {screenshotPath} = require(program.config);
-  return execSync(`STORYBOOK_SCREENSHOT_PATH=${screenshotPath} RNSST_CONFIG_PATH="${program.config}"  ${command}`, {stdio: 'inherit'});
-}
-
-function testCommand() {
-  const {testPath, port = 7007} = require(program.config);
-  return `STORYBOOK_PORT=${port} detox test ${program.detoxArgs} ${testPath}`;
+function execute() {
+  const {testPath} = require(program.config);
+  return execSync(`RNSST_CONFIG_PATH="${program.config}" detox test ${program.detoxArgs} ${testPath}`, {stdio: 'inherit'});
 }
 
 program
@@ -20,42 +15,10 @@ program
   .option('-d, --detox-args <args>', 'arguments to pass to detox', '');
 
 program
-  .command('create-reference')
-  .description('Create reference screenshots for your stories')
-  .action(() => {
-    execute(`STORYBOOK_UPDATE_REFERENCE=true ${testCommand()}`);
-  });
-
-program
   .command('test')
   .description('Compare your stories to reference screenshots')
   .action(() => {
-    let error;
-    try {
-      execute(testCommand());
-    } catch (e) {
-      error = e;
-    }
-    execute(`sh ${path.resolve(__dirname, './scripts/create-html.sh')}`);
-
-    if (error) {
-      throw error;
-    }
-  });
-
-program
-  .command('approve')
-  .description('Set your current screenshots as reference screenshots')
-  .action(() => {
-    execute(`node ${path.resolve(__dirname, './scripts/update-reference.js')}`);
-  });
-
-program
-  .command('results', 'Open results in your browser')
-  .action(() => {
-    const {screenshotPath} = require(program.config);
-    const report = path.resolve(screenshotPath, './index.html');
-    execute(`open ${report}`);
+    execute();
   });
 
 program
@@ -67,7 +30,16 @@ const path = require('path');
 module.exports = {
   screenshotPath: path.resolve(__dirname, './screenshots'), //path where you want your screenshots
   testPath: path.resolve(__dirname, './e2e/storybook.spec.js'), //path where your spec file exists 
-  port: 6006 // Optional port to run storybook server on, default is 7007
+  port: 6006, // Optional port to run storybook server on, default is 7007
+  applitools: {
+    apiKey: 'API_KEY',
+    appName: 'appName',
+    hostOS: 'hostOS',
+    hostApp: 'hostApp',
+    serverUrl: 'serverUrl',
+    batchName: 'batchName',
+    batchId: 'batchId',
+  }
 };
 `);
     console.log('Then create "storybook.spec.js" file in your detox tests. File contents: \n');

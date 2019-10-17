@@ -1,7 +1,6 @@
 const path = require('path');
 const {spawn} = require('child_process');
-const fs = require('fs');
-const {mkdir, deleteFolderRecursive, getImageDiff} = require('./helpers');
+const {mkdir, deleteFolderRecursive} = require('./helpers');
 
 module.exports = (screenshotsPath) => {
   return {
@@ -32,32 +31,8 @@ module.exports = (screenshotsPath) => {
       });
     },
 
-    getScreenshot: (name) =>{
+    getScreenshot: (name) => {
       return path.resolve(screenshotsPath, `./current/${name}.png`);
-    },
-
-    compareScreenshots: async (name) => {
-      const current = path.resolve(screenshotsPath, `./current/${name}.png`);
-      const reference = path.resolve(screenshotsPath, `./reference/${name}.png`);
-
-      const diffPath = path.resolve(screenshotsPath, `./difference/${name}.png`);
-
-      return await getImageDiff(reference, current, diffPath, 0);
-    },
-
-    updateReference: () => {
-      const {deleteFolderRecursive, mkdir, copyFolderRecursiveSync} = require('./helpers');
-
-      const reference = path.resolve(screenshotsPath, './reference');
-      const current = path.resolve(screenshotsPath, './current');
-      deleteFolderRecursive(reference);
-      mkdir(reference);
-      copyFolderRecursiveSync(current, reference);
-    },
-    hasReferenceScreenshot: (name) => {
-      const reference = path.resolve(screenshotsPath, `./reference/${name}.png`);
-
-      return fs.existsSync(reference);
     }
   };
 };
