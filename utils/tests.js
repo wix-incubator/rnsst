@@ -65,7 +65,7 @@ function runTests(channel, stories, createReferenceFiles, {takeStoryScreenshot, 
                 await eyes.close();
 
                 return;
-              };
+              }
 
               if (!createReferenceFiles) {
                 if (!hasReferenceScreenshot(id)) {
@@ -84,9 +84,10 @@ function runTests(channel, stories, createReferenceFiles, {takeStoryScreenshot, 
       });
 
     after(async () => {
-      if (createReferenceFiles) {
+      if (!config.applitools && createReferenceFiles) {
         updateReference();
       }
+
       channel.stop();
     });
   });
