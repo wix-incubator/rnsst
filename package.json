@@ -1,6 +1,6 @@
 {
   "name": "rnsst",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "React Native Storybook Screeshot Tests with Detox",
   "main": "test.js",
   "scripts": {
@@ -20,6 +20,7 @@
     "Testing"
   ],
   "dependencies": {
+    "@applitools/eyes-images": "^4.12.20",
     "commander": "^2.20.0",
     "gm": "^1.23.1",
     "ws": "^7.1.0"

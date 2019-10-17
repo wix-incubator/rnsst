@@ -32,6 +32,10 @@ module.exports = (screenshotsPath) => {
       });
     },
 
+    getScreenshot: (name) =>{
+      return path.resolve(screenshotsPath, `./current/${name}.png`);
+    },
+
     compareScreenshots: async (name) => {
       const current = path.resolve(screenshotsPath, `./current/${name}.png`);
       const reference = path.resolve(screenshotsPath, `./reference/${name}.png`);

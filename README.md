@@ -12,7 +12,7 @@
   </a>
 </p>
 
-> This is a helper project which allows you to run screeshot tests for your React Native Storybook project
+> This is a helper project which allows you to run screeshot tests for your React Native Storybook project (with optional Applitools support)
 
 ### 🏠 [Homepage](https://github.com/wix/rnsst#readme)
 
@@ -34,7 +34,16 @@ const path = require('path');
 module.exports = {
   screenshotPath: path.resolve(__dirname, './screenshots'), //path where you want your screenshots
   testPath: path.resolve(__dirname, './e2e/storybook.spec.js'), //path where your spec file exists
-  port: 7007 // Optional port to run storybook server on, default is 7007
+  port: 7007, // Optional port to run storybook server on, default is 7007
+  applitools: {
+    apiKey: 'API_KEY',
+    appName: 'appName',
+    hostOS: 'hostOS',
+    hostApp: 'hostApp',
+    serverUrl: 'serverUrl',
+    batchName: 'batchName',
+    batchId: 'batchId',
+  }
 };
 ```
 

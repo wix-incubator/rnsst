@@ -6,7 +6,7 @@ const {execSync} = require('child_process');
 
 function execute(command) {
   const {screenshotPath} = require(program.config);
-  return execSync(`STORYBOOK_SCREENSHOT_PATH=${screenshotPath} ${command}`, {stdio: 'inherit'});
+  return execSync(`STORYBOOK_SCREENSHOT_PATH=${screenshotPath} RNSST_CONFIG_PATH="${program.config}"  ${command}`, {stdio: 'inherit'});
 }
 
 function testCommand() {

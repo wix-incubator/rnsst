@@ -10,6 +10,8 @@ function getArguments() {
   };
 }
 
+const config = require(process.env.RNSST_CONFIG_PATH);
+
 module.exports = (beforeHandler) => {
   const {createReferenceFiles, screenshotPath, port} = getArguments();
 
@@ -22,7 +24,7 @@ module.exports = (beforeHandler) => {
       const channel = setupChannel(port);
       const stories = await loadTests(channel, beforeHandler);
 
-      runTests(channel, stories, createReferenceFiles, screenshotUtils);
+      runTests(channel, stories, createReferenceFiles, screenshotUtils, config);
     });
 
     it('Setup', () => {});
