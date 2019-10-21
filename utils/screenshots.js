@@ -6,14 +6,9 @@ module.exports = (screenshotsPath) => {
   return {
     makeScreenshotDir: () => {
       mkdir(screenshotsPath);
-      mkdir(path.resolve(screenshotsPath, './reference'));
       const current = path.resolve(screenshotsPath, './current');
       deleteFolderRecursive(current);
       mkdir(current);
-
-      const difference = path.resolve(screenshotsPath, './difference');
-      deleteFolderRecursive(difference);
-      mkdir(difference);
     },
 
     takeStoryScreenshot: (id) => {

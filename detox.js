@@ -9,7 +9,11 @@ module.exports = {
   setup: () => {
     screenshotUtils.makeScreenshotDir();
   },
-  screenshot: async (id, ignoreStatusBar = true) => {
+  screenshot: async (id, options = {}) => {
+    if (!config.applitools.apiKey) {
+      return;
+    }
+
     eyes = require('./utils/eyes')(config);
 
     await screenshotUtils.takeStoryScreenshot(id);
@@ -17,7 +21,7 @@ module.exports = {
 
     await eyes.checkRegion(screenshotUtils.getScreenshot(id), {
       left: 0,
-      top: ignoreStatusBar ? 44 : 0,
+      top: options.ignoreStatusBar !== false ? 44 : 0,
       width: 5000,
       height: 5000,
     }, id);
