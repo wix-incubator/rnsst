@@ -1,3 +1,5 @@
+const {testScreenshot} = require('detox-applitools-testing');
+
 function loadTests(channel, beforeHandler) {
   return Promise.all(
     [
@@ -16,9 +18,7 @@ function groupBy(key, arr) {
   }, {});
 };
 
-function runTests(channel, stories, {takeStoryScreenshot, getScreenshot}, config) {
-  let eyes = require('./eyes')(config);
-
+function runTests(channel, stories) {
   describe('Comparing screenshots', () => {
     Object.entries(groupBy('kind', Object.values(stories)))
       .map(([kind, stories]) => {
@@ -32,14 +32,10 @@ function runTests(channel, stories, {takeStoryScreenshot, getScreenshot}, config
               const {id} = story;
 
               await channel.setStory(id);
+
               await waitFor(element(by.id(id))).toBeVisible().withTimeout(2000);
 
-              await takeStoryScreenshot(id);
-
-              await eyes.open(config.applitools.appName || 'APP_NAME', id);
-              await eyes.checkImage(getScreenshot(id), id);
-
-              await eyes.close();
+              await testScreenshot(id, {ignoredTopHeight: 0});
             });
           });
         });

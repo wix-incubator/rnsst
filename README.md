@@ -1,6 +1,6 @@
 <h1 align="center">React Native Storybook Screenshot Testing</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.0.0-green.svg?cacheSeconds=2592000" />
   <a href="https://github.com/wix/rnsst#readme">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
   </a>
@@ -21,6 +21,8 @@
 This project depends on having detox with mocha and storybook running in your project.
 You can read more about [Detox](https://github.com/wix/Detox) and about [Storybook](https://storybook.js.org/)
 
+Also this project uses Detox Applitools testing as a dependency. You can check it [here](https://github.com/wix-incubator/detox-applitools-testing)
+
 ## Install
 
 ```sh
@@ -32,17 +34,13 @@ To set-up  first create `./rnsst-config.js` file.
 ```js
 const path = require('path');
 module.exports = {
-  screenshotPath: path.resolve(__dirname, './screenshots'), //path where you want your screenshots
   testPath: path.resolve(__dirname, './e2e/storybook.spec.js'), //path where your spec file exists
   port: 7007, // Optional port to run storybook server on, default is 7007
   applitools: {
-    apiKey: 'API_KEY',
-    appName: 'appName',
-    hostOS: 'hostOS',
-    hostApp: 'hostApp',
-    serverUrl: 'serverUrl',
-    batchName: 'batchName',
-    batchId: 'batchId',
+  apiKey: 'EYES_API_KEY', //Your key from applitools,
+     appName: 'Your app Name',
+     serverUrl: 'applitools server url', //Optional, leave empty if not using custom server
+     batchId: 'Unique batch number, can simply be uuid.v4()',
   }
 };
 ```
@@ -50,7 +48,7 @@ module.exports = {
 Then create storybook.spec.js file in your detox tests.
 
 ```js
-require('rnsst')(async () => {/* ...optional function to call before running screenshot tests */});
+require('rnsst')(async () => {/* ...optional function to call before running screenshot tests, can be useful to navigate to storybook */});
 ```
 
 ## Usage
