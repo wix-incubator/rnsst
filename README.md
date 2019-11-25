@@ -37,7 +37,7 @@ module.exports = {
   testPath: path.resolve(__dirname, './e2e/storybook.spec.js'), //path where your spec file exists
   port: 7007, // Optional port to run storybook server on, default is 7007
   applitools: {
-  apiKey: 'EYES_API_KEY', //Your key from applitools,
+     apiKey: 'EYES_API_KEY', //Your key from applitools,
      appName: 'Your app Name',
      serverUrl: 'applitools server url', //Optional, leave empty if not using custom server
      batchId: 'Unique batch number, can simply be uuid.v4()',
