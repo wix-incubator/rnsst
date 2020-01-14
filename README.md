@@ -14,11 +14,9 @@
 
 > This is a helper project which allows you to run screeshot tests for your React Native Storybook project with Applitools.
 
-### 🏠 [Homepage](https://github.com/wix/rnsst#readme)
-
 ## Prerequisites
 
-This project depends on having detox with mocha and storybook running in your project.
+This project depends on having detox and storybook running in your project.
 You can read more about [Detox](https://github.com/wix/Detox) and about [Storybook](https://storybook.js.org/)
 
 Also this project uses Detox Applitools testing as a dependency. You can check it [here](https://github.com/wix-incubator/detox-applitools-testing)
