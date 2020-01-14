@@ -49,6 +49,8 @@ Then create storybook.spec.js file in your detox tests.
 require('rnsst')(async () => {/* ...optional function to call before running screenshot tests, can be useful to navigate to storybook */});
 ```
 
+**Important: Storybook UI should be the only visible thing on the screen. Also make sure to hide status bar, so the clock does not break screenshot testing.**
+
 ## Usage
 
 Whenever you do some changes you can run `npx rnsst test` to compare reference screenshots to current screeshots.
