@@ -1,6 +1,6 @@
 <h1 align="center">React Native Storybook Screenshot Testing</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.0.0-green.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-3.0.0-green.svg?cacheSeconds=2592000" />
   <a href="https://github.com/wix/rnsst#readme">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
   </a>
@@ -27,12 +27,10 @@ Also this project uses Detox Applitools testing as a dependency. You can check i
 npm install rnsst
 ```
 
-To set-up  first create `./rnsst-config.js` file.
+Then create storybook.spec.js file in your detox tests.
 
 ```js
-const path = require('path');
-module.exports = {
-  testPath: path.resolve(__dirname, './e2e/storybook.spec.js'), //path where your spec file exists
+const config = {
   port: 7007, // Optional port to run storybook server on, default is 7007
   applitools: {
      apiKey: 'EYES_API_KEY', //Your key from applitools,
@@ -41,20 +39,18 @@ module.exports = {
      batchId: 'Unique batch number, can simply be uuid.v4()',
   }
 };
-```
 
-Then create storybook.spec.js file in your detox tests.
-
-```js
-require('rnsst')(async () => {/* ...optional function to call before running screenshot tests, can be useful to navigate to storybook */});
+require('rnsst')(config, async () => {/* ...optional function to call before running screenshot tests, can be useful to navigate to storybook */});
 ```
 
 **Important: Storybook UI should be the only visible thing on the screen. Also make sure to hide status bar, so the clock does not break screenshot testing.**
 
+Then simply run detox tests.
+
 ## Usage
 
-Whenever you do some changes you can run `npx rnsst test` to compare reference screenshots to current screeshots.
-After that you can check applitools to see your changes.
+Whenever you do some changes you can run detox tests to compare reference screenshots to current screenshots.
+After that you can check Applitools to see your changes.
 
 ## How does it work
 
@@ -63,7 +59,8 @@ This library works by setting up a websocket server and channel with your runnin
 ## Tips
 
 - You can use `!` as your first letter in story name to skip the story.
-- You can pass custom detox arguments as `--detox-args`
+- If you are using mocha you can remove --bail option from mocha config to run all the tests
+- Create a separate npm command to run only screenshot tests `detox test PATH_TO_storybook.spec.js`.
 
 ## 🤝 Contributing
 
