@@ -1,12 +1,11 @@
 {
   "name": "rnsst",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "React Native Storybook Screeshot Tests with Detox",
   "main": "test.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin" : "./rnsst",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wix/rnsst.git"
