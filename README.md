@@ -12,7 +12,7 @@
   </a>
 </p>
 
-> This is a helper project which allows you to run screeshot tests for your React Native Storybook project with Applitools.
+> This is a helper project which allows you to run screenshot tests for your React Native Storybook project with Applitools.
 
 ## Prerequisites
 
@@ -32,6 +32,7 @@ Then create storybook.spec.js file in your detox tests.
 ```js
 const config = {
   port: 7007, // Optional port to run storybook server on, default is 7007
+  runner: 'mocha' | 'jest', // Optional, default is mocha
   applitools: {
      apiKey: 'EYES_API_KEY', //Your key from applitools,
      appName: 'Your app Name',
