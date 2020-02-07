@@ -18,7 +18,9 @@ function groupBy(key, arr) {
   }, {});
 };
 
-function runTests(channel, stories) {
+function runTests(channel, stories, isJest) {
+  const afterFunc = isJest ? afterAll : after
+
   describe('Comparing screenshots', () => {
     Object.entries(groupBy('kind', Object.values(stories)))
       .map(([kind, stories]) => {
@@ -41,7 +43,7 @@ function runTests(channel, stories) {
         });
       });
 
-    after(async () => {
+    afterFunc(async () => {
       channel.stop();
     });
   });
