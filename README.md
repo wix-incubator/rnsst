@@ -1,6 +1,6 @@
 <h1 align="center">React Native Storybook Screenshot Testing</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-3.0.0-green.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-3.1.2-green.svg?cacheSeconds=2592000" />
   <a href="https://github.com/wix/rnsst#readme">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
   </a>
@@ -38,6 +38,8 @@ const config = {
      appName: 'Your app Name',
      serverUrl: 'applitools server url', //Optional, leave empty if not using custom server
      batchId: 'Unique batch number, can simply be uuid.v4()',
+     worker: 1, // Optional, leave empty if you are not using multiple Detox workers
+     totalWorkers: 3, // Optional, leave empty if you are not using multiple Detox workers
   }
 };
 
