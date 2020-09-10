@@ -18,9 +18,9 @@ function groupBy(key, arr) {
   }, {});
 };
 
-const defaultSettings = {ignoredTopHeight: 0};
+const getDefaultScreenshotOptions = () => ({ignoredTopHeight: 0});
 
-function runTests(channel, stories, isJest, settings = defaultSettings) {
+function runTests(channel, stories, isJest, getScreenshotOptions = getDefaultScreenshotOptions) {
   const afterFunc = isJest ? afterAll : after
 
   describe('Comparing screenshots', () => {
@@ -39,7 +39,7 @@ function runTests(channel, stories, isJest, settings = defaultSettings) {
 
               await waitFor(element(by.id(id))).toBeVisible().withTimeout(2000);
 
-              await testScreenshot(id, settings);
+              await testScreenshot(id, getScreenshotOptions(id));
             });
           });
         });
