@@ -30,7 +30,7 @@ module.exports = (config, beforeHandler) => {
 
       setup(applitools);
 
-      runTests(channel, storiesChunk, isJest);
+      runTests(channel, storiesChunk, isJest, config.getScreenshotOptions);
     });
 
     it('Setup', () => {});
