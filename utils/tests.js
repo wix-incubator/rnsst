@@ -18,7 +18,9 @@ function groupBy(key, arr) {
   }, {});
 };
 
-function runTests(channel, stories, isJest) {
+const defaultSettings = {ignoredTopHeight: 0};
+
+function runTests(channel, stories, isJest, settings = defaultSettings) {
   const afterFunc = isJest ? afterAll : after
 
   describe('Comparing screenshots', () => {
@@ -37,7 +39,7 @@ function runTests(channel, stories, isJest) {
 
               await waitFor(element(by.id(id))).toBeVisible().withTimeout(2000);
 
-              await testScreenshot(id, {ignoredTopHeight: 0});
+              await testScreenshot(id, settings);
             });
           });
         });
