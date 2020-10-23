@@ -34,16 +34,18 @@ const config = {
   port: 7007, // Optional port to run storybook server on, default is 7007
   runner: 'mocha' | 'jest', // Optional, default is mocha
   applitools: {
-     apiKey: 'EYES_API_KEY', //Your key from applitools,
-     appName: 'Your app Name',
-     serverUrl: 'applitools server url', //Optional, leave empty if not using custom server
-     batchId: 'Unique batch number, can simply be uuid.v4()',
-     worker: 1, // Optional, leave empty if you are not using multiple Detox workers
-     totalWorkers: 3, // Optional, leave empty if you are not using multiple Detox workers
-  }
+    apiKey: 'EYES_API_KEY', //Your key from applitools,
+    appName: 'Your app Name',
+    serverUrl: 'applitools server url', //Optional, leave empty if not using custom server
+    batchId: 'Unique batch number, can simply be uuid.v4()',
+    worker: 1, // Optional, leave empty if you are not using multiple Detox workers
+    totalWorkers: 3, // Optional, leave empty if you are not using multiple Detox workers
+  },
 };
 
-require('rnsst')(config, async () => {/* ...optional function to call before running screenshot tests, can be useful to navigate to storybook */});
+require('rnsst')(config, async () => {
+  /* ...optional function to call before running screenshot tests, can be useful to navigate to storybook */
+});
 ```
 
 **Important: Storybook UI should be the only visible thing on the screen. Also make sure to hide status bar, so the clock does not break screenshot testing.**

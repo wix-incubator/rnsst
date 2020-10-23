@@ -4,7 +4,8 @@
   "description": "React Native Storybook Screeshot Tests with Detox",
   "main": "test.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run lint",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,24 @@
   "author": "Gytis Vinclovas",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wix/rnsst/issues"
+    "url": "https://github.com/wix-incubator/rnsst/issues"
   },
-  "homepage": "https://github.com/wix/rnsst#readme"
+  "homepage": "https://github.com/wix-incubator/rnsst#readme",
+  "devDependencies": {
+    "eslint": "^7.11.0",
+    "eslint-plugin-jest": "^24.1.0",
+    "eslint-plugin-react": "^7.21.5",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.2",
+    "prettier": "^2.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
+  }
 }

@@ -7,10 +7,10 @@ module.exports.Server = class Server {
   }
 
   handleWS(socket) {
-    socket.on('message', data => {
-      this.wsServer.clients.forEach(c => {
+    socket.on('message', (data) => {
+      this.wsServer.clients.forEach((c) => {
         c.send(data);
       });
     });
   }
-}
+};

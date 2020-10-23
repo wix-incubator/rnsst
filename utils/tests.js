@@ -1,12 +1,9 @@
 const {testScreenshot} = require('detox-applitools-testing');
 
 function loadTests(channel, beforeHandler) {
-  return Promise.all(
-    [
-      channel.getStoryList(),
-      beforeHandler && beforeHandler()
-    ].filter(x => x)
-  ).then(([stories]) => stories);
+  return Promise.all([channel.getStoryList(), beforeHandler && beforeHandler()].filter((x) => x)).then(
+    ([stories]) => stories,
+  );
 }
 
 function groupBy(key, arr) {
@@ -16,34 +13,35 @@ function groupBy(key, arr) {
     acc[cur[key]].push(cur);
     return acc;
   }, {});
-};
+}
 
 const getDefaultScreenshotOptions = () => ({ignoredTopHeight: 0});
 
 function runTests(channel, stories, isJest, getScreenshotOptions = getDefaultScreenshotOptions) {
-  const afterFunc = isJest ? afterAll : after
+  const afterFunc = isJest ? afterAll : after;
 
   describe('Comparing screenshots', () => {
-    Object.entries(groupBy('kind', Object.values(stories)))
-      .map(([kind, stories]) => {
-        describe(kind, () => {
-          stories.forEach((story) => {
-            if (story.name[0] === '!') {
-              return;
-            }
+    Object.entries(groupBy('kind', Object.values(stories))).map(([kind, stories]) => {
+      describe(kind, () => {
+        stories.forEach((story) => {
+          if (story.name[0] === '!') {
+            return;
+          }
 
-            it(story.name, async function () {
-              const {id} = story;
+          it(story.name, async function () {
+            const {id} = story;
 
-              await channel.setStory(id);
+            await channel.setStory(id);
 
-              await waitFor(element(by.id(id))).toBeVisible().withTimeout(2000);
+            await waitFor(element(by.id(id)))
+              .toBeVisible()
+              .withTimeout(2000);
 
-              await testScreenshot(id, getScreenshotOptions(id));
-            });
+            await testScreenshot(id, getScreenshotOptions(id));
           });
         });
       });
+    });
 
     afterFunc(async () => {
       channel.stop();
@@ -51,8 +49,7 @@ function runTests(channel, stories, isJest, getScreenshotOptions = getDefaultScr
   });
 }
 
-
 module.exports = {
   loadTests,
-  runTests
+  runTests,
 };

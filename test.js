@@ -22,10 +22,7 @@ module.exports = (config, beforeHandler) => {
           [key]: value,
         }));
         const storiesByChunk = _.chunk(arrayFromObject, chunkSize);
-        storiesChunk = storiesByChunk[worker - 1].reduce(
-          (acc, cur) => ({...acc, ...cur}),
-          {}
-        );
+        storiesChunk = storiesByChunk[worker - 1].reduce((acc, cur) => ({...acc, ...cur}), {});
       }
 
       setup(applitools);

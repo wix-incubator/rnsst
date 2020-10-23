@@ -42,6 +42,6 @@ module.exports = function setupChannel(port) {
 
         channel.emit(Events.SET_CURRENT_STORY, {storyId});
       });
-    }
-  }
-}
+    },
+  };
+};
