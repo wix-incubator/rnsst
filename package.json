@@ -1,6 +1,6 @@
 {
   "name": "rnsst",
-  "version": "4.0.0-alpha.2",
+  "version": "4.0.0-alpha.3",
   "description": "React Native Storybook Screeshot Tests with Detox",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -28,7 +28,7 @@
     "Testing"
   ],
   "dependencies": {
-    "detox-applitools-testing": "^2.0.0-alpha.2",
+    "detox-applitools-testing": "^2.0.0-alpha.3",
     "ws": "^7.1.0"
   },
   "peerDependencies": {
