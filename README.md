@@ -1,6 +1,6 @@
 <h1 align="center">React Native Storybook Screenshot Testing</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-3.1.2-green.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="http://badge.fury.io/js/rnsst.svg" />
   <a href="https://github.com/wix/rnsst#readme">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
   </a>
