@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const {setup} = require('detox-applitools-testing');
 
 const setupChannel = require('./utils/channel');
@@ -16,14 +15,20 @@ module.exports = (config, beforeHandler) => {
 
       let storiesChunk = stories;
       if (worker && totalWorkers) {
-        const storiesLength = Object.keys(stories).length;
-        const chunkSize = Math.ceil(storiesLength / totalWorkers);
         const arrayFromObject = Object.entries(stories).map(([key, value]) => ({
           [key]: value,
         }));
-        const storiesByChunk = _.chunk(arrayFromObject, chunkSize);
-        storiesChunk = storiesByChunk[worker - 1].reduce(
-          (acc, cur) => ({...acc, ...cur}),
+        const size = Math.floor(arrayFromObject.length / totalWorkers);
+        const leftOvers = arrayFromObject.length % totalWorkers;
+        const slicing = Array.from(
+          Array(totalWorkers + 1).keys(),
+          (i) => size * i + Math.min(leftOvers, i)
+        );
+        const workerChunk = arrayFromObject.slice(
+          ...slicing.slice(worker - 1, worker + 1)
+        );
+        storiesChunk = workerChunk.reduce(
+          (acc, cur) => ({ ...acc, ...cur }),
           {}
         );
       }
