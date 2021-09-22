@@ -18,9 +18,17 @@ module.exports = (config, beforeHandler) => {
         const arrayFromObject = Object.entries(stories).map(([key, value]) => ({
           [key]: value,
         }));
-        const workerChunk = arrayFromObject.filter((value, index) => (index % totalWorkers) === worker - 1);
+        const size = Math.floor(arrayFromObject.length / totalWorkers);
+        const leftOvers = arrayFromObject.length % totalWorkers;
+        const slicing = Array.from(
+          Array(totalWorkers + 1).keys(),
+          (i) => size * i + Math.min(leftOvers, i)
+        );
+        const workerChunk = arrayFromObject.slice(
+          ...slicing.slice(worker - 1, worker + 1)
+        );
         storiesChunk = workerChunk.reduce(
-          (acc, cur) => ({...acc, ...cur}),
+          (acc, cur) => ({ ...acc, ...cur }),
           {}
         );
       }
