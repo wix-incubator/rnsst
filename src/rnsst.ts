@@ -1,4 +1,3 @@
-import * as _ from 'lodash';
 import {DetoxApplitoolsTesting, TestReporter} from 'detox-applitools-testing';
 import Channel from './utils/channel';
 import {getStories, runTests} from './utils/tests';
@@ -27,13 +26,16 @@ function splitStoriesToChunks(stories: StoryMap, worker?: number, totalWorkers?:
     return stories;
   }
 
-  const storiesLength = Object.keys(stories).length;
-  const chunkSize = Math.ceil(storiesLength / totalWorkers);
   const arrayFromObject = Object.entries(stories).map(([key, value]) => ({
     [key]: value,
   }));
-  const storiesByChunk = _.chunk(arrayFromObject, chunkSize);
-  const storiesChunk = storiesByChunk[worker - 1].reduce((acc, cur) => ({...acc, ...cur}), {});
+
+  const size = Math.floor(arrayFromObject.length / totalWorkers);
+  const leftOvers = arrayFromObject.length % totalWorkers;
+  const slicing = Array.from(Array(totalWorkers + 1).keys(), (i) => size * i + Math.min(leftOvers, i));
+  const workerChunk = arrayFromObject.slice(...slicing.slice(worker - 1, worker + 1));
+
+  const storiesChunk = workerChunk.reduce((acc, cur) => ({...acc, ...cur}), {});
 
   return storiesChunk;
 }
