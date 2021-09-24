@@ -32,8 +32,8 @@ function splitStoriesToChunks(stories: StoryMap, worker?: number, totalWorkers?:
 
   const size = Math.floor(arrayFromObject.length / totalWorkers);
   const leftOvers = arrayFromObject.length % totalWorkers;
-  const slicing = Array.from(Array(totalWorkers + 1).keys(), (i) => size * i + Math.min(leftOvers, i));
-  const workerChunk = arrayFromObject.slice(...slicing.slice(worker - 1, worker + 1));
+  const getChunkStart = (index: number) => size * index + Math.min(leftOvers, index);
+  const workerChunk = arrayFromObject.slice(getChunkStart(worker - 1), getChunkStart(worker));
 
   const storiesChunk = workerChunk.reduce((acc, cur) => ({...acc, ...cur}), {});
 
