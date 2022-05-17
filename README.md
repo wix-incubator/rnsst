@@ -1,16 +1,4 @@
-<h1 align="center">React Native Storybook Screenshot Testing</h1>
-<p>
-  <img alt="Version" src="https://img.shields.io/badge/version-3.1.2-green.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/wix/rnsst#readme">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
-  </a>
-  <a href="https://github.com/wix/rnsst/graphs/commit-activity">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
-  </a>
-  <a href="https://github.com/wix/rnsst/blob/master/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
-  </a>
-</p>
+# React Native Storybook Screenshot Testing
 
 > This is a helper project which allows you to run screenshot tests for your React Native Storybook project with Applitools.
 
