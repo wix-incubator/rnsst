@@ -19,9 +19,11 @@ export const testStories = async (config: Config, beforeHandler?: () => void) =>
       const file = await device.takeScreenshot(id);
       console.log('Saved to ' + file);
       if (config.captureDirectory) {
-        fs.mkdirSync(config.captureDirectory, {recursive: true});
-        fs.copyFile(file, path.join(config.captureDirectory, path.basename(file)), (err) => {
-          console.log(err ? `Failed to copy ${id}: ` + err : 'Copied to ' + file);
+        const targetDir = path.resolve(process.cwd(), config.captureDirectory);
+        fs.mkdirSync(targetDir, {recursive: true});
+        const savedFile = path.join(targetDir, `${id}.png`);
+        fs.copyFile(file, savedFile, (err) => {
+          console.log(err ? `Failed to copy output of ${id}: ` + err : 'Copied to ' + savedFile);
         });
       }
     },
