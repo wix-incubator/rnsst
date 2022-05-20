@@ -1,14 +1,23 @@
 {
   "name": "rnsst",
-  "version": "3.1.4",
+  "version": "5.0.4",
   "description": "React Native Storybook Screeshot Tests with Detox",
-  "main": "test.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf dist",
+    "build": "tsc",
+    "pretest": "npm run build && npm run lint",
+    "test": ":",
+    "lint": "eslint .",
+    "prepublish": "npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wix/rnsst.git"
+    "url": "git+https://github.com/wix-incubator/rnsst.git"
   },
   "keywords": [
     "React",
@@ -19,17 +28,29 @@
     "Testing"
   ],
   "dependencies": {
-    "detox-applitools-testing": "^1.0.1",
     "ws": "^7.1.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^7.4.0",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "eslint": "^7.11.0",
+    "prettier": "^2.1.2",
+    "typescript": "4.5.2"
   },
   "peerDependencies": {
     "detox": "*",
+    "@storybook/channel-websocket": "^5.2.0",
+    "@storybook/core-events": "^5.2.0",
     "@storybook/react-native": "^5.2.0"
   },
   "author": "Gytis Vinclovas",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wix/rnsst/issues"
+    "url": "https://github.com/wix-incubator/rnsst/issues"
   },
-  "homepage": "https://github.com/wix/rnsst#readme"
+  "homepage": "https://github.com/wix-incubator/rnsst#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.com/"
+  }
 }

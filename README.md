@@ -1,13 +1,13 @@
 # React Native Storybook Screenshot Testing
 
-> This is a helper project which allows you to run screenshot tests for your React Native Storybook project with Applitools.
+> This is a helper project which allows you to run screenshot tests for your React Native Storybook project.
 
 ## Prerequisites
 
 This project depends on having detox and storybook running in your project.
 You can read more about [Detox](https://github.com/wix/Detox) and about [Storybook](https://storybook.js.org/)
 
-Also this project uses Detox Applitools testing as a dependency. You can check it [here](https://github.com/wix-incubator/detox-applitools-testing)
+This project generates a directory with images from Storybook. Detecting changes in them is outside of scope for this module.
 
 ## Install
 
@@ -21,27 +21,19 @@ Then create storybook.spec.js file in your detox tests.
 const config = {
   port: 7007, // Optional port to run storybook server on, default is 7007
   runner: 'mocha' | 'jest', // Optional, default is mocha
-  applitools: {
-     apiKey: 'EYES_API_KEY', //Your key from applitools,
-     appName: 'Your app Name',
-     serverUrl: 'applitools server url', //Optional, leave empty if not using custom server
-     batchId: 'Unique batch number, can simply be uuid.v4()',
-     worker: 1, // Optional, leave empty if you are not using multiple Detox workers
-     totalWorkers: 3, // Optional, leave empty if you are not using multiple Detox workers
-  }
+  worker: 1, // Optional, leave empty if you are not using multiple Detox workers
+  totalWorkers: 3, // Optional, leave empty if you are not using multiple Detox workers
+  captureDirectory: './screenshots', // Optional, screenshots are left in Detox artifacts directory if not set
 };
 
-require('rnsst')(config, async () => {/* ...optional function to call before running screenshot tests, can be useful to navigate to storybook */});
+require('rnsst')(config, async () => {
+  /* ...optional function to call before running screenshot tests, can be useful to navigate to storybook */
+});
 ```
 
 **Important: Storybook UI should be the only visible thing on the screen. Also make sure to hide status bar, so the clock does not break screenshot testing.**
 
 Then simply run detox tests.
-
-## Usage
-
-Whenever you do some changes you can run detox tests to compare reference screenshots to current screenshots.
-After that you can check Applitools to see your changes.
 
 ## How does it work
 
